@@ -23,16 +23,16 @@ body {
   left: 12vw;
   font-family: 'Spartan', sans-serif;
   font-size: medium;
-  color: whitesmoke;
+  color: rgb(100, 99, 99);
   text-align: center;
   padding: 10px;
   border: none;
-  background-color: #9bd1f5;
+  background-color: #d7e3f3;
 }
 
 .pageLinks button:hover{
   cursor: pointer;
-  background-color: #d7e3f3;
+  background-color: #a8b1bd;
 }
 
 .footer{
@@ -42,11 +42,38 @@ body {
   padding: 20px;
   margin-bottom: 0;
   width: 100%;
-  background-color: #074e7e;
+  background-color: #124485;
   color: whitesmoke;
   text-align: left;
 }
+.newSub{
+  padding: 30px;
+  padding-left: 40px;
+}
+.form{
+  padding-left: 40px;
 
+}
+input[type=submit]{
+  width: 422px;
+  padding: 12px 18px;
+  margin: 20px 0;
+  border-radius: 7px;
+  cursor: pointer;
+}
+input[type=text]{
+  width: 422px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: list-item;
+  box-sizing: border-box;
+  border-radius: 7px;
+  outline: none;
+}
+
+input:focus{
+  background-color: #d8d9dd;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
