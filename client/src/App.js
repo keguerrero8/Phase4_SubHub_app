@@ -1,10 +1,14 @@
-import './App.css';
-import Login from './Login';
+import './index.css';
+import React from 'react';
+import HomePage from './HomePage';
+import Header from './Header';
+
 
 function App() {
   return (
     <div className="App">
-      <Login/>
+        <Header />
+        <HomePage />
     </div>
   );
 }
