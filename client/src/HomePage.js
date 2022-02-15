@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import AddSub from './AddSub'
 import Subscription from './Subscription';
 
+
 function HomePage({user}) {
     const [subscriptions, setSubscriptions] = useState([])
     
