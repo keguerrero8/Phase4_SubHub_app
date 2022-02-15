@@ -3,13 +3,15 @@ import React, { useState, useEffect } from 'react';
 import AddSub from './AddSub'
 
 function HomePage({user}) {
-    const [subData, setSubData] = useState([])
+    const [subscriptions, setSubscriptions] = useState([])
     
     useEffect(() => {
-        fetch('subscriptions')
+        fetch('/subscriptions')
         .then(r => r.json())
         .then(res => {
-            setSubData(res)
+            setSubscriptions(res)
+            console.log(subscriptions)
+
         })
     }, [])
 
@@ -21,7 +23,7 @@ function HomePage({user}) {
                 </Route>
                 {/* <Route exact path='/login'><Login/></Route> */}
                 <Route exact path='/new'>
-                    <AddSub subData={subData} setSubData={setSubData}/>
+                    <AddSub subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
                 </Route>
            
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function AddSub({subData, setSubData}){
+function AddSub({subscriptions, setSubscriptions}){
     const [formData, setFormData] = useState({
         name: "",
         image_url: "",
@@ -10,14 +10,14 @@ function AddSub({subData, setSubData}){
     function handleSubmit(event){
         event.preventDefault()
         alert('Thank you for adding a subscription!')
-        // fetch('http://localhost:3000/subs', {
-        //     method: 'POST',
-        //     headers: { "Content-Type": "application/json"},
-        //     body: JSON.stringify(formData)
-        // }).then(res => res.json())
-        // .then((newSub) => {
-        //     setSubData([newSub,...subData])
-        // })
+        fetch('/subscriptions', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify(formData)
+        }).then(res => res.json())
+        .then((newSub) => {
+            setSubscriptions([newSub,...subscriptions])
+        })
 
         console.log(formData)
     }
