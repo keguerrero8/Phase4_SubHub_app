@@ -1,16 +1,18 @@
 import { Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import AddSub from './AddSub'
+import Login from './Login'
 
 function HomePage() {
     const [subData, setSubData] = useState([])
     
     // useEffect(() => {
-    //     fetch('http://localhost:3000')
+    //     fetch('/subscriptions')
     //     .then(r => r.json())
     //     .then(r => {
     //         setSubData(r)
-    //     })
+    //         console.log(subData)
+    //     },[])
     // })
     return (
         <div>
