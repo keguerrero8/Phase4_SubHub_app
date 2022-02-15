@@ -5,7 +5,8 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-function SignupForm() {
+function SignupForm({ setUser }) {
+    const [errors, setErrors] = useState(null)
     const [credentials, setCredentials] = useState({
         username : "",
         password : "",
@@ -21,10 +22,10 @@ function SignupForm() {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((userData) => console.log(userData))
+                r.json().then((userData) => setUser(userData))
             }
             else {
-                r.json().then((error) => console.log(error))
+                r.json().then((err) => setErrors(err.error))
             }
         })
     };
@@ -46,10 +47,9 @@ function SignupForm() {
                 margin="normal"
                 required
                 fullWidth
-                id="username"
                 label="Username"
                 name="username"
-                variant="filled"
+                variant="outlined"
                 onChange={handleChange}
                 value={credentials.username}
             />
@@ -59,8 +59,8 @@ function SignupForm() {
                 fullWidth
                 name="password"
                 label="Password"
-                id="password"
-                variant="filled"
+                variant="outlined"
+                type="password"
                 onChange={handleChange}
                 value={credentials.password}
             />
@@ -70,8 +70,8 @@ function SignupForm() {
                 fullWidth
                 name="password_confirmation"
                 label="Password Confirmation"
-                id="password_confirmation"
-                variant="filled"
+                variant="outlined"
+                type="password"
                 onChange={handleChange}
                 value={credentials.password_confirmation}
             />
@@ -83,6 +83,7 @@ function SignupForm() {
                 Sign Up
             </Button>
             </Box>
+            {errors ? errors.map((e) => <Typography key={e} variant="subtitle1" component="h2" gutterBottom sx={{color: "red"}}>{e} </Typography>) : null}
         </>
       );
 }
