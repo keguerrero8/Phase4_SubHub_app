@@ -31,6 +31,12 @@ class SubscriptionsController < ApplicationController
         # render json: subscription, status: :created
     end
 
+    def destroy
+        subscription = Subscription.find(params[:id])
+        subscription.destroy
+        head :no_content
+    end
+    
     private
 
     def subscription_params
