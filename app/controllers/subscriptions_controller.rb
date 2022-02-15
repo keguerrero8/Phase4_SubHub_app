@@ -3,8 +3,12 @@ class SubscriptionsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
     def index
-        subscriptions = Subscription.all
-        render json: subscriptions
+        user = User.find_by(id: session[:user_id])
+        if user
+            render json: user.subscriptions
+        else
+            render json: {errors: ["No user logged in"]}, status: 401
+        end
     end
 
     def update
@@ -14,6 +18,14 @@ class SubscriptionsController < ApplicationController
     end
 
     def create
+        #Kevin updated post logic below
+        # user = User.find_by(id: session[:user_id])
+        # if user
+        #     subscription = user.subscriptions.create!(subscription_params)
+        #     render json: subscription, status: :created
+        # else
+        #     render json: {errors: ["No user logged in"]}, status: 401
+        # end
         subscription = Subscription.create!(subscription_params)
         render json: subscription, status: :created
     end

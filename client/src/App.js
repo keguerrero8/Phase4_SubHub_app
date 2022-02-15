@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
         <Header setUser={setUser}/>
-        <HomePage />
+        <HomePage user={user}/>
     </div>
   );
 }
