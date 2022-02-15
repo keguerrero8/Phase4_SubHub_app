@@ -9,6 +9,7 @@ class SubscriptionsController < ApplicationController
         else
             render json: {errors: ["No user logged in"]}, status: 401
         end
+        # render json: Subscription.all
     end
 
     def update
@@ -19,15 +20,15 @@ class SubscriptionsController < ApplicationController
 
     def create
         #Kevin updated post logic below
-        # user = User.find_by(id: session[:user_id])
-        # if user
-        #     subscription = user.subscriptions.create!(subscription_params)
-        #     render json: subscription, status: :created
-        # else
-        #     render json: {errors: ["No user logged in"]}, status: 401
-        # end
-        subscription = Subscription.create!(subscription_params)
-        render json: subscription, status: :created
+        user = User.find_by(id: session[:user_id])
+        if user
+            subscription = user.subscriptions.create!(subscription_params)
+            render json: subscription, status: :created
+        else
+            render json: {errors: ["No user logged in"]}, status: 401
+        end
+        # subscription = Subscription.create!(subscription_params)
+        # render json: subscription, status: :created
     end
 
     private
