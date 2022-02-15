@@ -5,7 +5,8 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-function LoginForm() {
+function LoginForm({ setUser }) {
+    const [errors, setErrors] = useState(null)
     const [credentials, setCredentials] = useState({
         username : "",
         password : ""
@@ -20,10 +21,10 @@ function LoginForm() {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((userData) => console.log(userData))
+                r.json().then((userData) => setUser(userData))
             }
             else {
-                r.json().then((error) => console.log(error))
+                r.json().then((err) => setErrors(err.error))
             }
         })
     };
@@ -38,17 +39,16 @@ function LoginForm() {
       return (
         <>
             <Typography component="h1" variant="h5">
-            Sign In
+            Log In
             </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
                 <TextField
                     margin="normal"
                     required
                     fullWidth
-                    id="username"
                     label="Username"
                     name="username"
-                    variant="filled"
+                    variant="outlined"
                     onChange={handleChange}
                     value={credentials.username}
                 />
@@ -58,8 +58,8 @@ function LoginForm() {
                     fullWidth
                     name="password"
                     label="Password"
-                    id="password"
-                    variant="filled"
+                    variant="outlined"
+                    type="password"
                     onChange={handleChange}
                     value={credentials.password}
                 />
@@ -68,8 +68,9 @@ function LoginForm() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
-                    Sign In
+                    Log In
                 </Button>
+                {errors ? errors.map((e) => <Typography key={e} variant="subtitle1" component="h2" gutterBottom sx={{color: "red"}}>{e} </Typography>) : null}
             </Box>
         </>
       );

@@ -23,7 +23,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-function Login() {
+function Login( { setUser }) {
     const [showLogin, setShowLogin] = useState(true);
 
     function handleClick () {
@@ -32,7 +32,7 @@ function Login() {
     
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" sx={{textAlign: "center"}}>
             <CssBaseline />
             <Box
                 sx={{
@@ -45,7 +45,7 @@ function Login() {
                 <Avatar sx={{ m: 1, bgcolor: 'green' }}>
                 <LockOutlinedIcon />
                 </Avatar>
-                {showLogin ? <LoginForm /> : <SignupForm />}
+                {showLogin ? <LoginForm setUser={setUser}/> : <SignupForm setUser={setUser}/>}
             </Box>
             <Divider/>
             <Typography component="h2" variant="h6" sx={{ mt: 4}}> 

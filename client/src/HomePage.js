@@ -15,13 +15,11 @@ function HomePage() {
     //     },[])
     // })
     return (
-        <div className='HomePage'>
+        <div>
                 <Route exact path='/'>
                     <h1 className='footer'>Total Monthly Spend: </h1>
                 </Route>
-                <Route exact path='/login'>
-                    <Login />
-                </Route>
+                {/* <Route exact path='/login'><Login/></Route> */}
                 <Route exact path='/new'>
                     <AddSub subData={subData} setSubData={setSubData}/>
                 </Route>
