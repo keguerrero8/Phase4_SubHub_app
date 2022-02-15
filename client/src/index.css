@@ -17,6 +17,11 @@ body {
   color: whitesmoke;
 }
 
+.image{
+  max-width: 60px;
+  max-height: auto;
+}
+
 .pageLinks button{
   position: relative;
   top: 0vh;
