@@ -21,11 +21,11 @@ function Subscription({subscription, onDeleteSubscription}){
                 <img className='image'src={image_url} alt='logo'/><br/>
                 <p className='date'>Payment Date: {payment_date} of each month</p>
                 <p className='price'>Monthly Price: {monthly_price}</p>
-
                 
             </Box>
         </div>
        
     )
 }
+
 export default Subscription

@@ -15,6 +15,7 @@ function HomePage({user}) {
         })
     }, [])
 
+
     function handleDeleteSub(deletedSubscription) {
         setSubscriptions((subscriptions) => 
             subscriptions.filter((subscription) => subscription.id !== deletedSubscription.id)
