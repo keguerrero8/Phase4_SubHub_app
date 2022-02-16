@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import { Link } from 'react-router-dom'
 
 function Subscription({subscription, onDeleteSubscription}){
     const { id, name, image_url, payment_date, monthly_price} = subscription
@@ -23,8 +24,10 @@ function Subscription({subscription, onDeleteSubscription}){
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell component="th" scope="row">
+            <Link to={`/${subscription.id}`}>
                 <Avatar src={image_url} />
                 {name}
+            </Link>
             </TableCell>
             <TableCell align="right">{monthly_price}</TableCell>
             <TableCell align="right">{payment_date}</TableCell>

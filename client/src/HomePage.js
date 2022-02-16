@@ -4,6 +4,7 @@ import AddSub from './AddSub'
 import Dashboard from './Dashboard';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import SubscriptionPage from './SubscriptionPage';
 
 function HomePage({user}) {
     const [subscriptions, setSubscriptions] = useState([])
@@ -22,6 +23,15 @@ function HomePage({user}) {
             subscriptions.filter((subscription) => subscription.id !== deletedSubscription.id)
         )
     }
+
+    function handleUpdateSubscription(updatedSubscription){
+        setSubscriptions((subscriptions) =>
+            subscriptions.map((subscription) => {
+                return subscription.id === updatedSubscription.id ? updatedSubscription : subscription;
+            })
+        )
+    }
+    
     
 
     return (
@@ -38,7 +48,11 @@ function HomePage({user}) {
                 <Route exact path='/new'>
                     <AddSub subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
                 </Route>
-           
+                <Route exact path='/:id'>
+                    <SubscriptionPage
+                        onUpdateSubscription={handleUpdateSubscription} />
+                </Route>
+                        
         </div>
     )
 }

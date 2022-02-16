@@ -18,6 +18,19 @@ class SubscriptionsController < ApplicationController
         render json: subscription
     end
 
+    def show
+        # user = User.find_by(id: session[:user_id])
+        # subscription = Subscription.find_by(id: params[:id])
+        # render json: subscription
+        user = User.find_by(id: session[:user_id])
+        subscription = Subscription.find_by(id: params[:id])
+        if user
+            render json: subscription
+        else
+            render json: {errors: ["No user logged in"]}, status: 401
+        end
+    end 
+
     def create
         #Kevin updated post logic below
         user = User.find_by(id: session[:user_id])
