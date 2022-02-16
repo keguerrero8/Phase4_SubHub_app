@@ -22,6 +22,20 @@ function HomePage({user}) {
         )
     }
 
+    const payments = subscriptions.map((subscription) => (
+        subscription.monthly_price
+    ))
+    
+    const sum = () => {
+        let sum = 0
+        for (let i = 0; i < payments.length; i++)
+            sum += payments[i]
+        return sum
+    }
+    
+    const sumOfSubscriptions = sum()
+    
+
     return (
         <div>
                 <Route exact path='/'>
@@ -38,7 +52,7 @@ function HomePage({user}) {
                             <h2>You have no subscriptions</h2>
                         </>
                     )}
-                    <h1 className='footer'>Total Monthly Spend: </h1>
+                    <h1 className='footer'>Total Monthly Spend: ${sumOfSubscriptions}</h1>
                 </Route>
                 {/* <Route exact path='/login'><Login/></Route> */}
                 <Route exact path='/new'>
