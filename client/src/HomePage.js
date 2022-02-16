@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import AddSub from './AddSub'
-import Subscription from './Subscription';
+import Dashboard from './Dashboard';
 
 
 function HomePage({user}) {
@@ -39,15 +39,8 @@ function HomePage({user}) {
     return (
         <div>
                 <Route exact path='/'>
-                    <h2>Hello {user.username}</h2>
-                    {subscriptions.length > 0 ? (
-                        subscriptions.map((subscription) => (
-                            <Subscription key={subscription.id} 
-                                onDeleteSubscription={handleDeleteSub}
-                                subscription={subscription}
-                            />
-                        ))
-                    ) : (
+                    {subscriptions.length > 0 ? 
+                      <Dashboard user={user} subscriptions={subscriptions} onDeleteSubscription={handleDeleteSub}/> : (
                         <>
                             <h2>You have no subscriptions</h2>
                         </>
