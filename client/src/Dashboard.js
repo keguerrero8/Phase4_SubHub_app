@@ -11,6 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Subscription from './Subscription';
+import Chart from './Chart';
 
 function Dashboard({ user, subscriptions, onDeleteSubscription}) {
 
@@ -20,7 +21,10 @@ function Dashboard({ user, subscriptions, onDeleteSubscription}) {
             <Box>
                 <Typography component="h1" variant="h4">Hello, {user.username}</Typography>
             </Box>
-            <TableContainer component={Paper} sx={{width: "70%", margin: "auto"}}>
+            <Box sx={{width: "70%", margin: "auto"}}>
+              <Chart subscriptions={subscriptions}/>
+            </Box>
+            <TableContainer component={Paper} sx={{width: "60%", margin: "auto"}}>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -35,7 +39,6 @@ function Dashboard({ user, subscriptions, onDeleteSubscription}) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Typography className="footer" component="h2" variant="h3">Total Monthly Spend:</Typography>
         </Container>
     )
 }

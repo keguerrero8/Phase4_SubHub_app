@@ -4,9 +4,10 @@ import AddSub from './AddSub'
 import Dashboard from './Dashboard';
 
 
+
 function HomePage({user}) {
     const [subscriptions, setSubscriptions] = useState([])
-    
+
     useEffect(() => {
         fetch('/subscriptions')
         .then(r => r.json())
