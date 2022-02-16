@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import "./index.css"
+import logo from "./logoWhite.png"
+import Button from '@mui/material/Button';
 
 function Header({ setUser }) {
 
@@ -15,14 +18,26 @@ function Header({ setUser }) {
     }
 
     return (
-        <div className="Header">
-           <h1 id='title'>SubHub</h1>
-           <div className='pageLinks'>
-                <Link id='home' to='/'><button id='home'>Home</button></Link>
-                <Link id='newSub' to='/new'><button id='newSub'>Add Subscription</button></Link>
-                <Link id='login' to='/login'><button id='login' onClick={handleClick}>Log out</button></Link>
-           </div>
-        </div>
+        <nav className="NavbarItems" >
+            <img 
+                className="header__logo"
+                src={logo} 
+                alt="logo"
+            />
+            <ul className="nav-menu">
+                <Link id='home' to='/' className="nav-links">Home</Link>
+                <Link id='newSub' to='/new' className="nav-links">Add Subscription</Link>
+                <Link id='login' to='/' id="nav-links-button">
+                    <Button 
+                        onClick={handleClick} 
+                        variant="contained" 
+                        color="success"
+                    >
+                        Log out
+                    </Button>
+                </Link>  
+            </ul>
+        </nav>
     )
 }
 

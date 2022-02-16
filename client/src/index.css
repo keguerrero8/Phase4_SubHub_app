@@ -5,17 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.Header{
-  font-family: 'Spartan', sans-serif;
-  position: sticky;
-  top: 0;
-  padding: 30px;
-  background-color: #074e7e;
-  padding-top: 1px;
-  padding-left: 40px;
-  z-index: 8;
-  color: whitesmoke;
-}
+
 
 .image{
   max-width: 60px;
@@ -35,11 +25,6 @@ body {
   background-color: #d7e3f3;
 }
 
-.pageLinks button:hover{
-  cursor: pointer;
-  background-color: #a8b1bd;
-}
-
 .footer{
   position: fixed;
   left: 0;
@@ -47,7 +32,7 @@ body {
   padding: 20px;
   margin-bottom: 0;
   width: 100%;
-  background-color: #124485;
+  background-color: #074e7e;
   color: whitesmoke;
   text-align: left;
 }
@@ -82,5 +67,50 @@ input:focus{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.NavbarItems {
+  background: #074e7e;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 25px;
+  list-style: none;
+  text-align: center;
+  width: 70vw;
+  justify-content: end;
+  margin-right: 2rem;
+}
+
+.nav-links {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+}
+
+#nav-links-button {
+  text-decoration: none;
+}
+
+
+.nav-links:hover {
+  background-color: #1e900a;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+}
+
+.header__logo {
+  height: 50px;
+  object-fit: contain;
+  color: #fff;
+  justify-self: start;
+  margin-left: 20px;
 }
 
