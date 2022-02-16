@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 function AddSub({subscriptions, setSubscriptions}){
     const [formData, setFormData] = useState({
@@ -28,9 +32,10 @@ function AddSub({subscriptions, setSubscriptions}){
     }
 
     return (
-        <div>
+        
+        <Container maxWidth="xs" sx={{ textAlign: "center"}}>
             <h2 className='newSub'>Add New Subscription!</h2>
-            <form className='form' onSubmit={handleSubmit}>
+            {/* <form className='form' onSubmit={handleSubmit}>
                 <label>Name:</label>
                 <input type='text' name='name' value={formData.name} onChange={onChange}/>
                 <label>Link:</label>
@@ -39,10 +44,58 @@ function AddSub({subscriptions, setSubscriptions}){
                 <input type='text' name='payment_date' value={formData.payment_date} onChange={onChange}/>
                 <label>Monthly Price:</label>
                 <input type='text' name='monthly_price' value={formData.monthly_price} onChange={onChange}/>
-
                 <input type='submit' value='Submit'/>
-            </form>
-        </div>
+            </form> */}
+            <Box component="form" noValidate onSubmit={handleSubmit}>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Name"
+                    name="name"
+                    variant="outlined"
+                    onChange={onChange}
+                    value={formData.name}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Link"
+                    name="image_url"
+                    variant="outlined"
+                    onChange={onChange}
+                    value={formData.image_url}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Payment Date"
+                    name="payment_date"
+                    variant="outlined"
+                    onChange={onChange}
+                    value={formData.payment_date}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Monthly Price"
+                    name="monthly_price"
+                    variant="outlined"
+                    onChange={onChange}
+                    value={formData.monthly_price}
+                />
+                <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                >
+                    Submit
+                </Button>
+            </Box>
+        </Container>
     )
 }
 

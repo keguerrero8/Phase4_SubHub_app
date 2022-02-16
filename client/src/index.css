@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: 'Spartan', sans-serif;
-  background-color: #d7e3f3; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,17 +24,6 @@ body {
   background-color: #d7e3f3;
 }
 
-.footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  padding: 20px;
-  margin-bottom: 0;
-  width: 100%;
-  background-color: #074e7e;
-  color: whitesmoke;
-  text-align: left;
-}
 .newSub{
   padding: 30px;
   padding-left: 40px;
