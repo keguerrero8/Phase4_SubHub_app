@@ -27,7 +27,7 @@ function Header({ setUser }) {
             <ul className="nav-menu">
                 <Link id='home' to='/' className="nav-links">Home</Link>
                 <Link id='newSub' to='/new' className="nav-links">Add Subscription</Link>
-                <Link id='login' to='/' id="nav-links-button">
+                <Link id="nav-links-button" to='/'>
                     <Button 
                         onClick={handleClick} 
                         variant="contained" 
