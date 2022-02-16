@@ -16,17 +16,21 @@ function HomePage({user}) {
     }, [])
 
 
+    function handleDeleteSub(deletedSubscription) {
+        setSubscriptions((subscriptions) => 
+            subscriptions.filter((subscription) => subscription.id !== deletedSubscription.id)
+        )
+    }
+
     return (
         <div>
                 <Route exact path='/'>
                     <h2>Hello {user.username}</h2>
                     {subscriptions.length > 0 ? (
                         subscriptions.map((subscription) => (
-                            <Subscription key={subscription.id}
-                                name={subscription.name}
-                                link={subscription.image_url}
-                                date={subscription.payment_date}
-                                cost={subscription.monthly_price} 
+                            <Subscription key={subscription.id} 
+                                onDeleteSubscription={handleDeleteSub}
+                                subscription={subscription}
                             />
                         ))
                     ) : (
