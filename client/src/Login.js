@@ -11,6 +11,7 @@ import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
+import logo from "./logoWhite.png"
 
 function Copyright(props) {
   return (
@@ -42,9 +43,13 @@ function Login( { setUser }) {
                 alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'green' }}>
-                <LockOutlinedIcon />
-                </Avatar>
+                {/* <Avatar sx={{ m: 1, bgcolor: 'green' }}>
+                    <LockOutlinedIcon />
+                </Avatar> */}
+                <Avatar src={logo} sx={{ bgcolor: "green", width: 56, height: 56 }}/>
+                <Typography component="h1" variant="h4" sx={{mt: "10px", mb: "10px"}}>
+                Welcome to SubHub
+                </Typography>
                 {showLogin ? <LoginForm setUser={setUser}/> : <SignupForm setUser={setUser}/>}
             </Box>
             <Divider/>

@@ -39,9 +39,6 @@ function SignupForm({ setUser }) {
     
       return (
         <>
-            <Typography component="h1" variant="h5">
-            Sign Up
-            </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
             <TextField
                 margin="normal"

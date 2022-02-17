@@ -72,12 +72,19 @@ function SubscriptionPage({onUpdateSubscription}) {
                 <CardContent>
                     <Typography className='subTitle' component="h1" variant="h4">{subscription.name}</Typography>
                 </CardContent>
+                {subscription.name ? 
+                <>
                 <CardMedia
                     component="img"
                     height="300"
                     image={subscription.image_url}
                     alt={`${subscription.name} logo`}
-                />
+                />        
+                </> : 
+                <CardContent>
+                    <Typography className='subTitle' component="h1" variant="h4">Loading...</Typography>
+                </CardContent>  
+                }
                 <CardContent>
                     <Typography className='subDate' component="h2" variant="h6" sx={{mb: "10px"}}>Payment Date: {subscription.payment_date}</Typography>
                     <Button sx={{mb: "10px"}} variant="contained" onClick={() => setShowPayModal(true)}>Update Payment Date</Button>
