@@ -3,8 +3,26 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
 
 function AddSub({subscriptions, setSubscriptions}){
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
+
     const [formData, setFormData] = useState({
         name: "",
         image_url: "",
@@ -13,7 +31,7 @@ function AddSub({subscriptions, setSubscriptions}){
     })
     function handleSubmit(event){
         event.preventDefault()
-        alert('Thank you for adding a subscription!')
+        // alert('Thank you for adding a subscription!')
         fetch('/subscriptions', {
             method: 'POST',
             headers: { "Content-Type": "application/json"},
@@ -80,9 +98,22 @@ function AddSub({subscriptions, setSubscriptions}){
                     type="submit"
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
+                    onClick={handleOpen}
                 >
                     Submit
                 </Button>
+                <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Subscription Added!
+                    </Typography>
+                </Box>
+            </Modal>
             </Box>
         </Container>
     )
