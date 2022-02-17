@@ -7,6 +7,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import ModalPayment from './ModalPayment';
 
 function SubscriptionPage({onUpdateSubscription}) {
@@ -86,8 +87,10 @@ function SubscriptionPage({onUpdateSubscription}) {
                 </CardContent>  
                 }
                 <CardContent>
-                    <Typography className='subDate' component="h2" variant="h6" sx={{mb: "10px"}}>Payment Date: {subscription.payment_date}</Typography>
-                    <Button sx={{mb: "10px"}} variant="contained" onClick={() => setShowPayModal(true)}>Update Payment Date</Button>
+                    <Box sx={{display: "flex", justifyContent: "center", mb: "25px"}}>
+                        <Typography className='subDate' component="h2" variant="h6" sx={{mr: "15px"}}>Payment Date: {subscription.payment_date}</Typography>
+                        <Button variant="contained" onClick={() => setShowPayModal(true)}>Update</Button>
+                    </Box>
                     <Modal 
                         show={showPayModal} 
                         onSubmit={handleUpdateDate} 
@@ -95,8 +98,10 @@ function SubscriptionPage({onUpdateSubscription}) {
                         onChange={handleChange}
                         formData={formData}
                     />
-                    <Typography sx={{mb: "10px"}} className='subPrice' component="h3" variant="h6">Monthly Price: ${subscription.monthly_price}</Typography>
-                    <Button sx={{mb: "10px"}} variant="contained" onClick={() => setShowMonthlyModal(true)}>Update Monthly Price</Button>
+                    <Box sx={{display: "flex", justifyContent: "center"}}>
+                        <Typography className='subPrice' component="h3" variant="h6" sx={{mr: "15px"}}>Monthly Price: ${subscription.monthly_price}</Typography>
+                        <Button variant="contained" onClick={() => setShowMonthlyModal(true)}>Update</Button>
+                    </Box>
                     <ModalPayment 
                         show={showMonthlyModal} 
                         onSubmit={handleUpdatePrice} 

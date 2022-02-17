@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '@mui/material/Button';
 
 function Modal({show, setShow, formData, onSubmit, onChange}){
+    const [showUpdate, setShowUpdate] = useState(false)
+
+    function handleUpdateClick () {
+        setShowUpdate(true)
+    }
+
+    function handleCancelClick () {
+        setShowUpdate(false)
+        setShow(false)
+    }
 
     if (!show) {
         return null
@@ -17,11 +27,10 @@ function Modal({show, setShow, formData, onSubmit, onChange}){
                     <div className="modal-body">
                         <input type='text' name='payment_date' placeholder='New Date' value={formData.payment_date} onChange={onChange}/>
                     </div>
+                    {showUpdate ? <h4>Successfully updated!</h4> : null} 
                     <div className="modal-footer">
-                        <Button sx={{margin: "15px"}}variant="contained" onClick={() => setShow(false)}>Cancel</Button>
-                        <Button type="submit" variant="contained" onSubmit={onSubmit}>Update</Button>
-                        {/* <button type="button" onClick={() => setShow(false)}>Cancel</button>
-                        <button type="submit" onSubmit={onSubmit}>Update</button> */}
+                        <Button sx={{margin: "15px"}}variant="contained" onClick={handleCancelClick}>Cancel</Button>
+                        <Button type="submit" variant="contained" onClick={handleUpdateClick} onSubmit={onSubmit}>Update</Button>
                     </div>
                 </form>
             </div>

@@ -66,9 +66,8 @@ function AddSub({subscriptions, setSubscriptions}){
                 />
                 <TextField
                     margin="normal"
-                    required
                     fullWidth
-                    label="Link"
+                    label="Logo Image Link"
                     name="image_url"
                     variant="outlined"
                     onChange={onChange}

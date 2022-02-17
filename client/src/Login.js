@@ -4,7 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -35,18 +34,15 @@ function Login( { setUser }) {
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs" sx={{textAlign: "center"}}>
             <CssBaseline />
-            <Box
-                sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                }}
-            >
-                {/* <Avatar sx={{ m: 1, bgcolor: 'green' }}>
-                    <LockOutlinedIcon />
-                </Avatar> */}
-                <Avatar src={logo} sx={{ bgcolor: "green", width: 56, height: 56 }}/>
+                <Box
+                    sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    }}
+                >
+                <Avatar src={logo} sx={{ bgcolor: "#074e7e", width: 56, height: 56 }}/>
                 <Typography component="h1" variant="h4" sx={{mt: "10px", mb: "10px"}}>
                 Welcome to SubHub
                 </Typography>
