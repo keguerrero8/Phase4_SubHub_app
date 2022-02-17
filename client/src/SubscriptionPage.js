@@ -7,6 +7,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import ModalPayment from './ModalPayment';
 
 function SubscriptionPage({onUpdateSubscription}) {
     const params= useParams()
@@ -41,6 +42,23 @@ function SubscriptionPage({onUpdateSubscription}) {
             console.log(formData))
         
     }
+
+    function handleUpdatePrice(event){
+        event.preventDefault()
+        fetch(`/subscriptions/${subscription.id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({monthly_price: formData.monthly_price})
+        })
+        .then(r => r.json())
+        .then(
+            
+            console.log(formData))
+        
+    }
+
 
     function handleChange(e) {
         const key = e.target.name;
@@ -89,6 +107,13 @@ function SubscriptionPage({onUpdateSubscription}) {
                     />
                     <Typography sx={{mb: "10px"}} className='subPrice' component="h3" variant="h6">Monthly Price: ${subscription.monthly_price}</Typography>
                     <Button sx={{mb: "10px"}} variant="contained" onClick={() => setShow(true)}>Update Monthly Price</Button>
+                    <ModalPayment 
+                        show={show} 
+                        onSubmit={handleUpdatePrice} 
+                        setShow={setShow} 
+                        onChange={handleChange}
+                        formData={formData}
+                    />
                 </CardContent>
             </Card>
         </Container>
