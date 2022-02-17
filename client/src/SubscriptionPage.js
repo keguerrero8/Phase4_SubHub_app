@@ -21,7 +21,7 @@ function SubscriptionPage({onUpdateSubscription}) {
     }, [params])
 
     function handleUpdateDate(event){
-        event.preventdefault()
+        event.preventDefault()
         fetch(`/subscriptions/${subscription.id}`, {
             method: 'PATCH',
             headers: {
@@ -29,10 +29,10 @@ function SubscriptionPage({onUpdateSubscription}) {
             },
             body: JSON.stringify({payment_date: formData.payment_date})
         })
-            .then(r => r.json())
-            .then(
-                
-                console.log(formData))
+        .then(r => r.json())
+        .then(
+            
+            console.log(formData))
         
     }
 

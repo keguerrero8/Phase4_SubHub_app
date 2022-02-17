@@ -24,7 +24,7 @@ function Subscription({subscription, onDeleteSubscription}){
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell component="th" scope="row">
-            <Link to={`/${subscription.id}`}>
+            <Link to={`subscriptions/${id}`}>
                 <Avatar src={image_url} />
                 {name}
             </Link>

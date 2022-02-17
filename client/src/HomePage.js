@@ -48,7 +48,7 @@ function HomePage({user}) {
                 <Route exact path='/new'>
                     <AddSub subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
                 </Route>
-                <Route exact path='/:id'>
+                <Route exact path='/subscriptions/:id'>
                     <SubscriptionPage
                         onUpdateSubscription={handleUpdateSubscription} />
                 </Route>
