@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@mui/material/Button';
 
 function Modal({show, setShow, formData, onSubmit, onChange}){
 
@@ -17,9 +18,10 @@ function Modal({show, setShow, formData, onSubmit, onChange}){
                         <input type='text' name='payment_date' placeholder='New Date' value={formData.payment_date} onChange={onChange}/>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" onClick={() => setShow(false)}>Cancel</button>
-                        <button type="submit" onSubmit={onSubmit}>Update</button>
-
+                        <Button sx={{margin: "15px"}}variant="contained" onClick={() => setShow(false)}>Cancel</Button>
+                        <Button type="submit" variant="contained" onSubmit={onSubmit}>Update</Button>
+                        {/* <button type="button" onClick={() => setShow(false)}>Cancel</button>
+                        <button type="submit" onSubmit={onSubmit}>Update</button> */}
                     </div>
                 </form>
             </div>

@@ -35,17 +35,6 @@ function AddSub({subscriptions, setSubscriptions}){
         
         <Container maxWidth="xs" sx={{ textAlign: "center"}}>
             <h2 className='newSub'>Add New Subscription!</h2>
-            {/* <form className='form' onSubmit={handleSubmit}>
-                <label>Name:</label>
-                <input type='text' name='name' value={formData.name} onChange={onChange}/>
-                <label>Link:</label>
-                <input type='text' name='image_url' value={formData.image_url} onChange={onChange}/>
-                <label>Payment Date:</label>
-                <input type='text' name='payment_date' value={formData.payment_date} onChange={onChange}/>
-                <label>Monthly Price:</label>
-                <input type='text' name='monthly_price' value={formData.monthly_price} onChange={onChange}/>
-                <input type='submit' value='Submit'/>
-            </form> */}
             <Box component="form" noValidate onSubmit={handleSubmit}>
                 <TextField
                     margin="normal"

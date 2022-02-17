@@ -19,10 +19,10 @@ function App() {
   if (!user) return <Login setUser={setUser}/>;
 
   return (
-    <div>
+    <>
         <Header setUser={setUser}/>
         <HomePage user={user}/>
-    </div>
+    </>
   );
 }
 
