@@ -7,8 +7,8 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 
 function AddSub({subscriptions, setSubscriptions}){
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const [open, setOpen] = useState(false);
+    const [errors, setErrors] = useState(null);
     const handleClose = () => setOpen(false);
 
     const style = {
@@ -29,19 +29,22 @@ function AddSub({subscriptions, setSubscriptions}){
         payment_date: "",
         monthly_price: "",
     })
+
     function handleSubmit(event){
         event.preventDefault()
-        // alert('Thank you for adding a subscription!')
         fetch('/subscriptions', {
             method: 'POST',
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify(formData)
-        }).then(res => res.json())
-        .then((newSub) => {
-            setSubscriptions([newSub,...subscriptions])
+        }).then(res => {
+            if (res.ok) {
+                res.json().then(newSub => setSubscriptions([newSub,...subscriptions]))
+                setOpen(true)
+            }
+            else {
+                res.json().then((err) => setErrors(err.errors))
+            }
         })
-
-        console.log(formData)
     }
     function onChange(event){
         const key= event.target.name;
@@ -77,7 +80,7 @@ function AddSub({subscriptions, setSubscriptions}){
                     margin="normal"
                     required
                     fullWidth
-                    label="Payment Date"
+                    label="Payment Date in MM/DD/YYYY"
                     name="payment_date"
                     variant="outlined"
                     onChange={onChange}
@@ -97,22 +100,23 @@ function AddSub({subscriptions, setSubscriptions}){
                     type="submit"
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                    onClick={handleOpen}
+                    // onClick={handleOpen}
                 >
                     Submit
                 </Button>
+                {errors ? errors.map((e) => <Typography key={e} variant="subtitle1" component="h2" gutterBottom sx={{color: "red"}}>{e} </Typography>) : null}
                 <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
                 >
-                <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Subscription Added!
-                    </Typography>
-                </Box>
-            </Modal>
+                    <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Subscription Added!
+                        </Typography>
+                    </Box>
+                </Modal>
             </Box>
         </Container>
     )

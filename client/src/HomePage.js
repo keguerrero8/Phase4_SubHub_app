@@ -35,25 +35,24 @@ function HomePage({user}) {
     
 
     return (
-        <div>
-                <Route exact path='/'>
-                    {subscriptions.length > 0 ? 
-                      <Dashboard user={user} subscriptions={subscriptions} onDeleteSubscription={handleDeleteSub}/> : (
-                    <Box sx={{textAlign: "center", mt: "20px"}}>
-                        <Typography sx={{mb: "5px"}} component="h1" variant="h3">Hello, {user.username}</Typography>
-                        <Typography component="h2" variant="h5">You have no active subscriptions</Typography>
-                    </Box>
-                    )}
-                </Route>
-                <Route exact path='/new'>
-                    <AddSub subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
-                </Route>
-                <Route exact path='/subscriptions/:id'>
-                    <SubscriptionPage
-                        onUpdateSubscription={handleUpdateSubscription} />
-                </Route>
-                        
-        </div>
+        <>
+            <Route exact path='/'>
+                {subscriptions.length > 0 ? 
+                    <Dashboard user={user} subscriptions={subscriptions} onDeleteSubscription={handleDeleteSub}/> : (
+                <Box sx={{textAlign: "center", mt: "20px"}}>
+                    <Typography sx={{mb: "5px"}} component="h1" variant="h3">Hello, {user.username}</Typography>
+                    <Typography component="h2" variant="h5">You have no active subscriptions</Typography>
+                </Box>
+                )}
+            </Route>
+            <Route exact path='/new'>
+                <AddSub subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
+            </Route>
+            <Route exact path='/subscriptions/:id'>
+                <SubscriptionPage
+                    onUpdateSubscription={handleUpdateSubscription} />
+            </Route>      
+        </>
     )
 }
 

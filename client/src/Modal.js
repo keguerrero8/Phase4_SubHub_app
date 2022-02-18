@@ -25,7 +25,7 @@ function Modal({show, setShow, formData, onSubmit, onChange}){
                         <h4 className="modal-title">Edit Payment Date</h4>
                     </div>
                     <div className="modal-body">
-                        <input type='text' name='payment_date' placeholder='New Date' value={formData.payment_date} onChange={onChange}/>
+                        <input type='text' name='payment_date' placeholder='MM/DD/YYYY' value={formData.payment_date} onChange={onChange}/>
                     </div>
                     {showUpdate ? <h4>Successfully updated!</h4> : null} 
                     <div className="modal-footer">

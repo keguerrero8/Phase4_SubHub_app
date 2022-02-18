@@ -19,11 +19,13 @@ function Header({ setUser }) {
 
     return (
         <nav className="NavbarItems" >
-            <img 
-                className="header__logo"
-                src={logo} 
-                alt="logo"
-            />
+            <Link to='/'>
+                <img 
+                    className="header__logo"
+                    src={logo} 
+                    alt="logo"
+                />
+            </Link>
             <ul className="nav-menu">
                 <Link id='home' to='/' className="nav-links">Home</Link>
                 <Link id='newSub' to='/new' className="nav-links">Add Subscription</Link>
