@@ -39,6 +39,7 @@ function AddSub({subscriptions, setSubscriptions}){
         }).then(res => {
             if (res.ok) {
                 res.json().then(newSub => setSubscriptions([newSub,...subscriptions]))
+                setErrors(null)
                 setOpen(true)
             }
             else {
