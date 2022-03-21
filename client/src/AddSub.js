@@ -1,27 +1,9 @@
 import React, { useState } from 'react'
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
 function AddSub({subscriptions, setSubscriptions}){
-    const [open, setOpen] = useState(false);
     const [errors, setErrors] = useState(null);
-    const handleClose = () => setOpen(false);
-
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-      };
+    const [showUpdate, setShowUpdate] = useState(false)
 
     const [formData, setFormData] = useState({
         name: "",
@@ -40,7 +22,7 @@ function AddSub({subscriptions, setSubscriptions}){
             if (res.ok) {
                 res.json().then(newSub => setSubscriptions([newSub,...subscriptions]))
                 setErrors(null)
-                setOpen(true)
+                setShowUpdate(true)
             }
             else {
                 res.json().then((err) => setErrors(err.errors))
@@ -55,8 +37,9 @@ function AddSub({subscriptions, setSubscriptions}){
 
     return (
         
-        <Container maxWidth="xs" sx={{ textAlign: "center"}}>
-            <h2 className='newSub'>Add New Subscription!</h2>
+        <Box sx={{textAlign: "center"}}>
+            <h2 className='newSub'>Add New Subscription</h2>
+            {showUpdate ? <h4>Successfully added!</h4> : null}
             <Box component="form" noValidate onSubmit={handleSubmit}>
                 <TextField
                     margin="normal"
@@ -101,25 +84,12 @@ function AddSub({subscriptions, setSubscriptions}){
                     type="submit"
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                    // onClick={handleOpen}
                 >
                     Submit
                 </Button>
                 {errors ? errors.map((e) => <Typography key={e} variant="subtitle1" component="h2" gutterBottom sx={{color: "red"}}>{e} </Typography>) : null}
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Subscription Added!
-                        </Typography>
-                    </Box>
-                </Modal>
             </Box>
-        </Container>
+        </Box>
     )
 }
 

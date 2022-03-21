@@ -1,6 +1,5 @@
 import { Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
-import AddSub from './AddSub'
 import Dashboard from './Dashboard';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -38,16 +37,16 @@ function HomePage({user}) {
         <>
             <Route exact path='/'>
                 {subscriptions.length > 0 ? 
-                    <Dashboard user={user} subscriptions={subscriptions} onDeleteSubscription={handleDeleteSub}/> : (
+                    <Dashboard user={user} subscriptions={subscriptions} setSubscriptions={setSubscriptions} onDeleteSubscription={handleDeleteSub}/> : (
                 <Box sx={{textAlign: "center", mt: "20px"}}>
                     <Typography sx={{mb: "5px"}} component="h1" variant="h3">Hello, {user.username}</Typography>
                     <Typography component="h2" variant="h5">You have no active subscriptions</Typography>
                 </Box>
                 )}
             </Route>
-            <Route exact path='/new'>
+            {/* <Route exact path='/new'>
                 <AddSub subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
-            </Route>
+            </Route> */}
             <Route exact path='/subscriptions/:id'>
                 <SubscriptionPage
                     onUpdateSubscription={handleUpdateSubscription} />

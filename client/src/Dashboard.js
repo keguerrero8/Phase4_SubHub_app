@@ -1,55 +1,62 @@
-import React, { useRef, useEffect } from 'react';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import React, { useRef, useState, useEffect } from 'react';
+import { Button, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Grid, Modal } from '@mui/material';
 import Subscription from './Subscription';
 import Chart from './Chart';
-import Grid from '@mui/material/Grid';
 import SummaryCard from './SummaryCard';
+import AddSub from './AddSub';
 import { gsap } from "gsap";
 
-function Dashboard({ user, subscriptions, onDeleteSubscription}) {
+function Dashboard({ user, subscriptions, onDeleteSubscription, setSubscriptions}) {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const title = useRef()
     const card = useRef()
     const table = useRef()
 
     useEffect(() => {
         gsap.from(title.current, { opacity: 0, duration: 2})
-        gsap.from(card.current, { opacity: 0, duration: 2})
         gsap.from(table.current, { opacity: 0, duration: 2})
     }, [])
 
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
+
     return (
-        <Container maxWidth="md" sx={{textAlign: "center"}}>
-            <CssBaseline />
-            <Box sx={{mt: "20px"}} ref={title}>
-                <Typography sx={{mb: "5px"}} component="h1" variant="h3">Hello, {user.username}</Typography>
-                <Typography component="h2" variant="h5">Here is your monthly report</Typography>
+        <Box sx={{textAlign: "center", width: "95%", margin: "30px auto"}}>
+            <Box sx={{my: "25px"}} ref={title}>
+                <Typography sx={{mb: "5px"}} component="h1" variant="h3">Welcome back, {user.username}</Typography>
             </Box>
-            <Grid container spacing={2}>
-                <Grid item xs={6}>
-                    <Chart subscriptions={subscriptions}/>
-                </Grid>
-                <Grid item xs={6} sx={{margin: "auto"}} ref={card}>
-                    <SummaryCard subscriptions={subscriptions} />
-                </Grid>
-            </Grid>
-            <TableContainer component={Paper} sx={{width: "90%", mb: "50px"}} ref={table}>
+            <SummaryCard subscriptions={subscriptions} />
+            <Chart subscriptions={subscriptions}/>
+            <Button sx={{my: "30px"}} onClick={handleOpen} variant="contained">Add Subscription</Button>
+            <Modal
+                open={open}
+                onClose={handleClose}
+            >
+                <Box sx={style}>
+                <AddSub subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
+                <Button onClick={handleClose} sx={{position: "absolute", right: "0px"}}>CLOSE</Button>
+                </Box>
+            </Modal>
+            <TableContainer component={Paper} sx={{width: "90%", margin: "auto"}} ref={table}>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell >Name</TableCell>
-                            <TableCell align="right">Monthly Price ($)</TableCell>
-                            <TableCell align="right">Payment Date</TableCell>
-                            <TableCell align="right">Delete?</TableCell>
+                            <TableCell align="center">Monthly Price ($)</TableCell>
+                            <TableCell align="center">Start Payment Date</TableCell>
+                            <TableCell align="center">Delete?</TableCell>
+                            <TableCell align="center">Recurring?</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -57,7 +64,7 @@ function Dashboard({ user, subscriptions, onDeleteSubscription}) {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </Container>
+        </Box>
     )
 }
 

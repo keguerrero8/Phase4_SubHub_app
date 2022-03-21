@@ -27,8 +27,8 @@ function Header({ setUser }) {
                 />
             </Link>
             <ul className="nav-menu">
-                <Link id='home' to='/' className="nav-links">Home</Link>
-                <Link id='newSub' to='/new' className="nav-links">Add Subscription</Link>
+                <Link id='home' to='/' className="nav-links">Dashboard</Link>
+                <Link to='/calender' className="nav-links">Calender</Link>
                 <Link id="nav-links-button" to='/'>
                     <Button 
                         onClick={handleClick} 

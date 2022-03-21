@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import { Link } from 'react-router-dom'
 
 function Subscription({subscription, onDeleteSubscription}){
-    const { id, name, image_url, payment_date, monthly_price} = subscription
+    const { id, name, image_url, payment_date, monthly_price, isRecurring} = subscription
 
     function handleDeleteSubscription(){
         fetch(`/subscriptions/${id}`,{
@@ -29,13 +29,14 @@ function Subscription({subscription, onDeleteSubscription}){
                 {name}
             </Link>
             </TableCell>
-            <TableCell align="right">{monthly_price}</TableCell>
-            <TableCell align="right">{payment_date}</TableCell>
-            <TableCell align="right" id="pliss">
+            <TableCell align="center">{monthly_price}</TableCell>
+            <TableCell align="center">{payment_date}</TableCell>
+            <TableCell align="center" >
                 <IconButton aria-label="delete" onClick={handleDeleteSubscription}>
                     <DeleteIcon/>
                 </IconButton>
-            </TableCell>     
+            </TableCell>  
+            <TableCell align="center">{isRecurring === "true" ? "yes" : "no"}</TableCell>  
         </TableRow>
     )
 }
