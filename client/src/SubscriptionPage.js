@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Modal from './Modal'
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
+import { Radio, RadioGroup, FormControlLabel, FormControl, Typography, Container, Card, CardContent, CardMedia, Button, Box } from '@mui/material';
 import ModalPayment from './ModalPayment';
 
 function SubscriptionPage({onUpdateSubscription}) {
@@ -15,11 +9,12 @@ function SubscriptionPage({onUpdateSubscription}) {
     const [subscription, setSubscription] = useState({})
     const [showPayModal, setShowPayModal] = useState(false)
     const [showMonthlyModal, setShowMonthlyModal] = useState(false)
+    const [value, setValue] = useState("yes")
     const [formData, setFormData] = useState({
         payment_date: "",
         monthly_price: ""
     })
-
+    
     useEffect(() => {
         fetch(`/subscriptions/${params.id}`)
         .then(r => r.json())
@@ -28,6 +23,20 @@ function SubscriptionPage({onUpdateSubscription}) {
             console.log(data)
         })
     }, [params])
+
+    const handleRecurringChange = (event) => {
+        setValue(event.target.value);
+        fetch(`/subscriptions/${subscription.id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({isRecurring: event.target.value === "yes" ? "true" : null})
+        })
+        .then(r => r.json())
+        .then((sub) => onUpdateSubscription(sub))
+    };
+
 
     function handleUpdateDate(event){
         event.preventDefault()
@@ -109,6 +118,21 @@ function SubscriptionPage({onUpdateSubscription}) {
                         onChange={handleChange}
                         formData={formData}
                     />
+                    <Box sx={{display: "flex", justifyContent: "center", mt: "20px", alignItems: "center"}}>
+                        <Typography className='subPrice' component="h3" variant="h6" sx={{mr: "15px"}}>Recurring?</Typography>
+                        <FormControl>
+                            <RadioGroup
+                                row
+                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                name="row-radio-buttons-group"
+                                onChange={handleRecurringChange}
+                                value={subscription.isRecurring === null ? "no" : value}
+                            >
+                                <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                                <FormControlLabel value="no" control={<Radio />} label="No" />
+                            </RadioGroup>
+                        </FormControl>
+                    </Box>
                 </CardContent>
             </Card>
         </Container>

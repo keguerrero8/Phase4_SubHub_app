@@ -46,7 +46,7 @@ class SubscriptionsController < ApplicationController
     private
 
     def subscription_params
-        params.permit(:name, :monthly_price, :payment_date, :image_url, :user_id)
+        params.permit(:name, :monthly_price, :payment_date, :image_url, :user_id, :isRecurring)
     end
 
     def render_invalid(invalid)
