@@ -1,11 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom'
 import "./index.css"
 import logo from "./logoWhite.png"
-import Button from '@mui/material/Button';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Toolbar, Typography, Menu, Container, IconButton, Avatar, Button, MenuItem } from "@mui/material";
 
 function Header({ setUser }) {
-
+    const [anchorElNav, setAnchorElNav] = useState(null);
+  
+    const handleOpenNavMenu = (event) => {
+      setAnchorElNav(event.currentTarget);
+    };
+  
+    const handleCloseNavMenu = () => {
+      setAnchorElNav(null);
+    };
+  
     function handleClick () {
         fetch("/logout", {
             method: "DELETE"
@@ -18,28 +28,80 @@ function Header({ setUser }) {
     }
 
     return (
-        <nav className="NavbarItems" >
-            <Link to='/'>
-                <img 
-                    className="header__logo"
-                    src={logo} 
-                    alt="logo"
-                />
-            </Link>
-            <ul className="nav-menu">
-                <Link id='home' to='/' className="nav-links">Dashboard</Link>
-                <Link to='/calender' className="nav-links">Calender</Link>
-                <Link id="nav-links-button" to='/'>
-                    <Button 
-                        onClick={handleClick} 
-                        variant="contained" 
-                        color="success"
-                    >
-                        Log out
-                    </Button>
-                </Link>  
-            </ul>
-        </nav>
+        <AppBar position="static">
+        <Container maxWidth="xl">
+            <Toolbar disableGutters>
+            <Avatar sx={{mr: 3, display: { xs: 'none', md: 'flex' }}} alt="Subhub" src={logo}/>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+                >
+                <MenuIcon />
+                </IconButton>
+                <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                    display: { xs: 'block', md: 'none' },
+                }}
+                >
+                    <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/">Dashboard</NavLink></Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/diagrams">Calender</NavLink></Typography>
+                    </MenuItem>
+                </Menu>
+            </Box>
+            <Typography
+                variant="h6" 
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            >
+                Subhubs
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                    <NavLink style={{color: "white", textDecoration: "none"}} to="/">Dashboard</NavLink>
+                </Button>
+                <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                    <NavLink style={{color: "white", textDecoration: "none"}} to="/diagrams">Calender</NavLink>
+                </Button>
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+                <Button
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                    <NavLink style={{color: "white", textDecoration: "none"}} to="/" onClick={handleClick}>Log out</NavLink>
+                </Button>
+            </Box>
+            </Toolbar>
+        </Container>
+        </AppBar>
     )
 }
 
