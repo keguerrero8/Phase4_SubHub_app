@@ -12,6 +12,7 @@ function SummaryCard({subscriptions}) {
         if (s.payment_date <= fullDate) {
             return s.isRecurring === "true" 
         }
+        return false
     }
     )
     .map(s => s.monthly_price)

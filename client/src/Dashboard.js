@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Button, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Grid, Modal } from '@mui/material';
+import { Button, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Modal } from '@mui/material';
 import Subscription from './Subscription';
 import Chart from './Chart';
 import SummaryCard from './SummaryCard';
@@ -11,7 +11,6 @@ function Dashboard({ user, subscriptions, onDeleteSubscription, setSubscriptions
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const title = useRef()
-    const card = useRef()
     const table = useRef()
 
     useEffect(() => {

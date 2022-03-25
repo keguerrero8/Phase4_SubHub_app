@@ -1,6 +1,7 @@
 import { Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import Dashboard from './Dashboard';
+import CalenderPage from './CalenderPage';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import SubscriptionPage from './SubscriptionPage';
@@ -50,7 +51,10 @@ function HomePage({user}) {
             <Route exact path='/subscriptions/:id'>
                 <SubscriptionPage
                     onUpdateSubscription={handleUpdateSubscription} />
-            </Route>      
+            </Route>
+            <Route exact path='/calender'>
+                <CalenderPage subscriptions={subscriptions}/>
+            </Route>  
         </>
     )
 }
