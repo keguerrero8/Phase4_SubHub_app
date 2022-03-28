@@ -38,7 +38,7 @@ function LoginForm({ setUser }) {
     
       return (
         <>
-            <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+            <Box component="form" noValidate sx={{ mt: 1, width: "95%", margin: "auto" }} onSubmit={handleSubmit}>
                 <TextField
                     margin="normal"
                     required
@@ -46,6 +46,7 @@ function LoginForm({ setUser }) {
                     label="Username"
                     name="username"
                     variant="outlined"
+                    size="small"
                     onChange={handleChange}
                     value={credentials.username}
                 />
@@ -56,6 +57,7 @@ function LoginForm({ setUser }) {
                     name="password"
                     label="Password"
                     variant="outlined"
+                    size="small"
                     type="password"
                     onChange={handleChange}
                     value={credentials.password}
@@ -63,6 +65,7 @@ function LoginForm({ setUser }) {
                 <Button
                     type="submit"
                     variant="contained"
+                    size="small"
                     sx={{ mt: 3, mb: 2 }}
                 >
                     Log In

@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import logo from "./logoWhite.png"
@@ -21,7 +20,6 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
 
 function Login( { setUser }) {
     const [showLogin, setShowLogin] = useState(true);
@@ -31,8 +29,7 @@ function Login( { setUser }) {
     }
     
     return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs" sx={{textAlign: "center"}}>
+        <Container component="main" maxWidth="xs" sx={{textAlign: "center"}}>
             <CssBaseline />
                 <Box
                     sx={{
@@ -52,12 +49,11 @@ function Login( { setUser }) {
             <Typography component="h2" variant="h6" sx={{ mt: 4}}> 
             {showLogin ? "Don't have an account?": "Already have an account?"} 
             </Typography>
-            <Button variant="contained" onClick={handleClick} sx={{ mt: 2, mb: 4 }}>
+            <Button size="small" variant="contained" onClick={handleClick} sx={{ mt: 2, mb: 4 }}>
                 {showLogin ? "Sign Up" : "Log In"} 
             </Button>
             <Copyright/>
-            </Container>
-        </ThemeProvider>
+        </Container>
     );
 }
 

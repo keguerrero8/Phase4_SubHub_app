@@ -3,7 +3,8 @@ import format from "date-fns/format";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./calender.css"
+// import "react-big-calendar/lib/css/react-big-calendar.css";
 import React from "react";
 
 const locales = {
@@ -63,10 +64,10 @@ function createSubsPostCurrent(sub, currentDate) {
     startMonth = currentMonth
   }
   let monthsToAdd = 0
-  while (monthsToAdd < 12) {
+  while (monthsToAdd < 24) {
     startMonth += 1
     subArray.push({payment_date: `${startMonth > 9 ? startMonth.toString() : "0" + startMonth.toString()}/${sub.payment_date.slice(3,5)}/${startYear.toString()}`, name: sub.name})
-    if (startMonth === 12) {
+    if (startMonth === 24) {
       startYear += 1 
       startMonth = 0
     }
@@ -114,7 +115,7 @@ function CalenderPage({subscriptions}) {
         views={{month: true}} 
         startAccessor="start" 
         endAccessor="end" 
-        style={{height: "100%", margin: "50px"}}
+        style={{height: "100%", margin: "30px"}}
       />
     </div>
   );

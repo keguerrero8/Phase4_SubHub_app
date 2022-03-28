@@ -39,7 +39,7 @@ function SignupForm({ setUser }) {
     
       return (
         <>
-            <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+            <Box component="form" noValidate sx={{ mt: 1, width: "95%", margin: "auto" }} onSubmit={handleSubmit}>
             <TextField
                 margin="normal"
                 required
@@ -47,6 +47,7 @@ function SignupForm({ setUser }) {
                 label="Username"
                 name="username"
                 variant="outlined"
+                size="small"
                 onChange={handleChange}
                 value={credentials.username}
             />
@@ -58,6 +59,7 @@ function SignupForm({ setUser }) {
                 label="Password"
                 variant="outlined"
                 type="password"
+                size="small"
                 onChange={handleChange}
                 value={credentials.password}
             />
@@ -69,12 +71,14 @@ function SignupForm({ setUser }) {
                 label="Password Confirmation"
                 variant="outlined"
                 type="password"
+                size="small"
                 onChange={handleChange}
                 value={credentials.password_confirmation}
             />
             <Button
                 type="submit"
                 variant="contained"
+                size="small"
                 sx={{ mt: 3, mb: 2 }}
             >
                 Sign Up

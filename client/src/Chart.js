@@ -16,6 +16,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 function Chart( { subscriptions }) {
   return (
+    // <div style={{width: "100%", height: 500}}>
     <ResponsiveContainer width="100%" height={400}>
       <PieChart >
         <Pie
@@ -24,7 +25,7 @@ function Chart( { subscriptions }) {
           data={subscriptions}
           cx="50%"
           cy="50%"
-          outerRadius={130}
+          outerRadius="85%"
           fill="green"
           label={renderCustomizedLabel}
           labelLine={false}
@@ -36,6 +37,7 @@ function Chart( { subscriptions }) {
         <Tooltip />
       </PieChart>
     </ResponsiveContainer>
+    // </div>
   );
 }
 

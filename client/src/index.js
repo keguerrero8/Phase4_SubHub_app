@@ -3,12 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom'
-// import reportWebVitals from './reportWebVitals';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#356796', 
+    },
+    secondary: {
+      main: '#14a37f', 
+    },
+  },
+});
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <ThemeProvider theme={theme}>
+    <Router>
+      <App />
+    </ Router>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 

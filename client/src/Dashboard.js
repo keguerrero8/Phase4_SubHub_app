@@ -5,6 +5,7 @@ import Chart from './Chart';
 import SummaryCard from './SummaryCard';
 import AddSub from './AddSub';
 import { gsap } from "gsap";
+import "./index.css"
 
 function Dashboard({ user, subscriptions, onDeleteSubscription, setSubscriptions}) {
     const [open, setOpen] = useState(false);
@@ -31,9 +32,10 @@ function Dashboard({ user, subscriptions, onDeleteSubscription, setSubscriptions
     };
 
     return (
-        <Box sx={{textAlign: "center", width: "95%", margin: "30px auto"}}>
+        <Box sx={{textAlign: "center", width: "95%", height: "100%", margin: "30px auto"}}>
             <Box sx={{my: "25px"}} ref={title}>
-                <Typography sx={{mb: "5px"}} component="h1" variant="h3">Welcome back, {user.username}</Typography>
+                <Typography sx={{mb: "5px", fontSize: "6.0vw"}} component="h1" variant="h3">Welcome back, {user.username}</Typography>
+                {/* <Typography sx={{mb: "5px", fontSize: "6.0vw"}} component="h1" variant="h3">Welcome back, {user.username}</Typography> */}
             </Box>
             <SummaryCard subscriptions={subscriptions} />
             <Chart subscriptions={subscriptions}/>

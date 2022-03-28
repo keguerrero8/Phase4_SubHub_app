@@ -5,7 +5,7 @@ import Header from './Header';
 import Login from './Login';
 
 
-function App() {
+function App({theme}) {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -16,12 +16,12 @@ function App() {
     })
   }, [])
 
-  if (!user) return <Login setUser={setUser}/>;
+  if (!user) return <Login setUser={setUser} theme={theme}/>;
 
   return (
     <>
-        <Header setUser={setUser}/>
-        <HomePage user={user}/>
+        <Header setUser={setUser} theme={theme}/>
+        <HomePage user={user} theme={theme}/>
     </>
   );
 }
