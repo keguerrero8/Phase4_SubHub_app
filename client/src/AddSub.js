@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography, Radio, RadioGroup, FormControlLabel, FormControl } from '@mui/material';
 
 function AddSub({subscriptions, setSubscriptions}){
     const [errors, setErrors] = useState(null);
     const [showUpdate, setShowUpdate] = useState(false)
-
     const [formData, setFormData] = useState({
         name: "",
         image_url: "",
         payment_date: "",
         monthly_price: "",
+        isRecurring: "true"
     })
 
     function handleSubmit(event){
@@ -33,6 +33,10 @@ function AddSub({subscriptions, setSubscriptions}){
         const key= event.target.name;
         const value = event.target.value;
         setFormData({...formData, [key]:value})
+    }
+
+    function handleRecurringChange (event) {
+        setFormData({...formData, isRecurring: event.target.value === "yes" ? "true" : null})
     }
 
     return (
@@ -80,6 +84,21 @@ function AddSub({subscriptions, setSubscriptions}){
                     onChange={onChange}
                     value={formData.monthly_price}
                 />
+                <Box sx={{display: "flex", justifyContent: "center", mt: "20px", alignItems: "center"}}>
+                    <Typography className='subPrice' component="h3" variant="h6" sx={{mr: "15px"}}>Recurring?</Typography>
+                    <FormControl>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-row-radio-buttons-group-label"
+                            name="row-radio-buttons-group"
+                            onChange={handleRecurringChange}
+                            value={formData.isRecurring === "true" ? "yes" : "no"}
+                        >
+                            <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="no" control={<Radio />} label="No" />
+                        </RadioGroup>
+                    </FormControl>
+                </Box>               
                 <Button
                     type="submit"
                     variant="contained"

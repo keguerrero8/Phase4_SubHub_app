@@ -13,6 +13,11 @@ function Dashboard({ user, subscriptions, onDeleteSubscription, setSubscriptions
     const handleClose = () => setOpen(false);
     const title = useRef()
     const table = useRef()
+    let date = new Date()
+    let day = date.getDate()
+    let month = String(date.getMonth()+1).padStart(2, "0");
+    let year = date.getFullYear();
+    let fullDate = `${month}/${day}/${year}`
 
     useEffect(() => {
         gsap.from(title.current, { opacity: 0, duration: 2})
@@ -31,14 +36,22 @@ function Dashboard({ user, subscriptions, onDeleteSubscription, setSubscriptions
         p: 4,
     };
 
+    const subsThisMonth = subscriptions.filter(s => {
+        let isSameMonth = s.payment_date.slice(0,2) === fullDate.slice(0,2) && s.payment_date.slice(6,10) === fullDate.slice(6,10)
+        let isRecurring = s.payment_date <= fullDate && s.isRecurring === "true"
+        if (isSameMonth || isRecurring) {
+            return true
+        }
+        return false
+    })
+
     return (
         <Box sx={{textAlign: "center", width: "95%", height: "100%", margin: "30px auto"}}>
             <Box sx={{my: "25px"}} ref={title}>
                 <Typography sx={{mb: "5px", fontSize: "6.0vw"}} component="h1" variant="h3">Welcome back, {user.username}</Typography>
-                {/* <Typography sx={{mb: "5px", fontSize: "6.0vw"}} component="h1" variant="h3">Welcome back, {user.username}</Typography> */}
             </Box>
-            <SummaryCard subscriptions={subscriptions} />
-            <Chart subscriptions={subscriptions}/>
+            <SummaryCard subsThisMonth={subsThisMonth} />
+            {subsThisMonth.length === 0? null: <Chart subsThisMonth={subsThisMonth}/>}
             <Button sx={{my: "30px"}} onClick={handleOpen} variant="contained">Add Subscription</Button>
             <Modal
                 open={open}

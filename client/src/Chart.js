@@ -14,15 +14,14 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   );
 };
 
-function Chart( { subscriptions }) {
+function Chart( { subsThisMonth }) {
   return (
-    // <div style={{width: "100%", height: 500}}>
     <ResponsiveContainer width="100%" height={400}>
       <PieChart >
         <Pie
           dataKey="monthly_price"
           isAnimationActive={true}
-          data={subscriptions}
+          data={subsThisMonth}
           cx="50%"
           cy="50%"
           outerRadius="85%"
@@ -30,14 +29,13 @@ function Chart( { subscriptions }) {
           label={renderCustomizedLabel}
           labelLine={false}
         >
-          {subscriptions.map((sub, index) => (
+          {subsThisMonth.map((sub, index) => (
             <Cell key={sub.id} fill={COLORS[index]} />
           ))}                  
         </Pie>
         <Tooltip />
       </PieChart>
     </ResponsiveContainer>
-    // </div>
   );
 }
 
