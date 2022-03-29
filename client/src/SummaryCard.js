@@ -5,8 +5,8 @@ function SummaryCard({subsThisMonth}) {
 
     return (
         <>
-            <Typography component="h1" variant="h5" color="primary" sx={{fontSize: "4.5vw"}}>Total spend this month:</Typography>
-            <Typography component="h2" variant="h4" color="primary" sx={{fontSize: "4.5vw"}}>${totalMonthPayment}</Typography>
+            <Typography component="h1" variant="h5" color="primary" sx={{fontSize: "4vw"}}>Total spend this month:</Typography>
+            <Typography component="h2" variant="h4" color="primary" sx={{fontSize: "4vw"}}>${totalMonthPayment}</Typography>
         </>
     )
 }
