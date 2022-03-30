@@ -6,7 +6,7 @@ import './slick-theme.css';
 import Slider from "react-slick";
 
 
-function SubCarousel({subsThisMonth, fullDate}){
+function SubCarousel({subsThisMonth, currentDate}){
     const settings = {
         infinite: true,
         arrows: true,
@@ -42,19 +42,19 @@ function SubCarousel({subsThisMonth, fullDate}){
     };
 
     subsThisMonth.sort((a, b) => b.monthly_price - a.monthly_price)
-    console.log(subsThisMonth)
 
     return (
         <div style={{margin: "50px auto", width: "90%"}}>
-            <Typography sx={{mb: "50px"}} variant="h4" component="h1">Your top 5 spends</Typography>
+            <Typography sx={{mb: "50px", fontSize: "6.0vw"}} variant="h4" component="h1">Your top 5 spends this month</Typography>
             <Slider {...settings}>
             {subsThisMonth.slice(0,5).map(s => {
+                let recurringDate = `${currentDate.slice(0,2)}/${s.payment_date.slice(3,5)}/${currentDate.slice(6,10)}`
                 return (
                     <div key={s.id}>
                         <img src={s.image_url} alt={s.name} style={{width: "100%", height: "150px", objectFit: "contain", marginBottom: "10px"}}/>
                         <p>Monthly Price: {s.monthly_price} $</p>
                         <hr style={{width: "70%"}}/>
-                        <p>Due on: {`${fullDate.slice(0,2)}/${s.payment_date.slice(3,5)}/${fullDate.slice(6,10)}`}</p>
+                        <p>Due on: {recurringDate > currentDate ? recurringDate : `${parseInt(currentDate.slice(0,2)) + 1}/${s.payment_date.slice(3,5)}/${currentDate.slice(6,10)}`}</p>
                     </div>
                 )
             })}

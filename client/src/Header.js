@@ -79,9 +79,8 @@ function Header({ setUser }) {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
             >
-                Subhub
+            <Avatar alt="Subhub" src={logo}/>
             </Typography>
-            {/* <Avatar sx={{flexGrow: 0, display: { xs: 'flex', md: 'none' }}} alt="Subhub" src={logo}/> */}
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 <Button
                     onClick={handleCloseNavMenu}
