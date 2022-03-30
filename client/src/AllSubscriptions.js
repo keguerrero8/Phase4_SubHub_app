@@ -12,7 +12,7 @@ function AllSubscriptions({subscriptions, setSubscriptions, onDeleteSubscription
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: "350px",
+        width: "70vw",
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -21,10 +21,8 @@ function AllSubscriptions({subscriptions, setSubscriptions, onDeleteSubscription
     
 
     return (
-        <Box sx={{textAlign: "center", my: "40px", width: "100%"}}>
-            <Box sx={{width: "95%", margin: "auto"}}>
-                <Typography variant="h4">Manage your subscriptions</Typography>
-            </Box>
+        <Box sx={{textAlign: "center", my: "40px", width: "100vw"}}>
+            <Typography variant="h4">Manage your subscriptions</Typography>
             <Button sx={{my: "40px"}} onClick={handleOpen} variant="contained">Add Subscription</Button>
             <Modal
                 open={open}

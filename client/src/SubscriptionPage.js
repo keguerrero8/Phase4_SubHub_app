@@ -20,7 +20,6 @@ function SubscriptionPage({onUpdateSubscription}) {
         .then(r => r.json())
         .then(data => {
             setSubscription(data)
-            console.log(data)
         })
     }, [params])
 
