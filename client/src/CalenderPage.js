@@ -4,7 +4,6 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import "./calender.css"
-// import "react-big-calendar/lib/css/react-big-calendar.css";
 import React from "react";
 
 const locales = {
@@ -23,7 +22,7 @@ let date = new Date()
 let day = date.getDate()
 let month = String(date.getMonth()+1).padStart(2, "0");
 let year = date.getFullYear();
-let currentDate = `${month}/${day}/${year}`
+let currentDate = `${month}/${day < 10 ? "0" + day.toString() : day}/${year}`
 
 //function to create subscription up to the current date
 function createSubsPreCurrent(sub, currentDate) {
@@ -91,7 +90,6 @@ function CalenderPage({subscriptions}) {
     noRecurring.push(s)
   })
 
-  //combine preSubs, postSubs and no recurring payments into one final array 
   const allSubsRecurring = noRecurring.concat(preSubArray).concat(postSubArray)
 
   //take final array and format and parse to user with Calender component props
@@ -105,6 +103,7 @@ function CalenderPage({subscriptions}) {
         end: new Date(parseInt(year), parseInt(month)-1, parseInt(day))
     }
   })
+
 
   return (
     <div style={{height: "500px"}}>
