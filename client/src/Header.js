@@ -66,7 +66,7 @@ function Header({ setUser }) {
                         <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/">Dashboard</NavLink></Typography>
                     </MenuItem>
                     <MenuItem onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/calender">Calender</NavLink></Typography>
+                        <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/calender">Calendar</NavLink></Typography>
                     </MenuItem>
                     <MenuItem onClick={handleCloseNavMenu}>
                         <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/subscriptions">Subscriptions</NavLink></Typography>
@@ -92,7 +92,7 @@ function Header({ setUser }) {
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                    <NavLink style={{color: "white", textDecoration: "none"}} to="/calender">Calender</NavLink>
+                    <NavLink style={{color: "white", textDecoration: "none"}} to="/calender">Calendar</NavLink>
                 </Button>
                 <Button
                     onClick={handleCloseNavMenu}

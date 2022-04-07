@@ -18,6 +18,8 @@ function AllSubscriptions({subscriptions, setSubscriptions, onDeleteSubscription
         boxShadow: 24,
         p: 4,
     };
+
+    console.log(subscriptions)
     
 
     return (

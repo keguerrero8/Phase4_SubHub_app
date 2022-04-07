@@ -38,7 +38,7 @@ function HomePage({user}) {
                     <Dashboard user={user} subscriptions={subscriptions} setSubscriptions={setSubscriptions} onDeleteSubscription={handleDeleteSub}/> : (
                 <Box sx={{textAlign: "center", mt: "20px"}}>
                     <Typography sx={{mb: "5px"}} component="h1" variant="h3">Hello, {user.username}</Typography>
-                    <Typography component="h2" variant="h5">You have no active subscriptions</Typography>
+                    <Typography component="h2" variant="h5">No active subscriptions found</Typography>
                 </Box>
                 )}
             </Route>
