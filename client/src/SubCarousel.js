@@ -4,6 +4,7 @@ import './index.css';
 import './slick.css'; 
 import './slick-theme.css';
 import Slider from "react-slick";
+import "./index.css"
 
 
 function SubCarousel({subsThisMonth, currentDate}){
@@ -45,7 +46,8 @@ function SubCarousel({subsThisMonth, currentDate}){
 
     return (
         <div style={{margin: "50px auto", width: "90%"}}>
-            <Typography sx={{mb: "50px", fontSize: "6.0vw"}} variant="h4" component="h1">Your top 5 spends this month</Typography>
+            <h4 className="text">Your top 5 spends this month</h4>
+            {/* <Typography sx={{mb: "50px", fontSize: "6.0vw"}} variant="h4" component="h1">Your top 5 spends this month</Typography> */}
             <Slider {...settings}>
             {subsThisMonth.slice(0,5).map(s => {
                 let recurringDate = `${currentDate.slice(0,2)}/${s.payment_date.slice(3,5)}/${currentDate.slice(6,10)}`

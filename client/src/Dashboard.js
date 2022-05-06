@@ -23,7 +23,8 @@ function Dashboard({ user, subscriptions }) {
     return (
         <Box sx={{textAlign: "center", width: "95%", height: "100%", margin: "30px auto"}}>
             <Box sx={{my: "25px"}} >
-                <Typography sx={{mb: "5px", fontSize: "6.0vw"}} component="h1" variant="h3">Welcome back, {user.username}</Typography>
+                <h1 className="text">Welcome back, {user.username}</h1>
+                {/* <Typography sx={{mb: "5px", fontSize: "6.0vw"}} component="h1" variant="h3">Welcome back, {user.username}</Typography> */}
             </Box>
             <SummaryCard subsThisMonth={subsThisMonth} />
             {subsThisMonth.length === 0? null: <Chart subsThisMonth={subsThisMonth}/>}
